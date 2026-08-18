@@ -1,0 +1,175 @@
+/* The Veridian Protocol — Dark Mode Mobile-First Theme */
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a25;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b8;
+  --accent: #c41e3a;
+  --accent-hover: #e63950;
+  --border: #2a2a3a;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0a0f 100%);
+  border-bottom: 2px solid var(--accent);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.site-title {
+  font-size: 2rem;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.site-subtitle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.chapter-nav {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chapter-nav h2 {
+  color: var(--accent);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+#chapter-list {
+  list-style: none;
+}
+
+#chapter-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#chapter-list li:last-child {
+  border-bottom: none;
+}
+
+#chapter-list li:hover {
+  color: var(--accent);
+}
+
+#chapter-list li.active {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chapter-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+.chapter-content h1 {
+  color: var(--accent);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.chapter-content p {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.chapter-content p:first-of-type::first-letter {
+  font-size: 3rem;
+  float: left;
+  line-height: 1;
+  margin-right: 0.5rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chapter-nav-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.nav-button {
+  flex: 1;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.nav-button:hover {
+  background: var(--accent-hover);
+}
+
+.nav-button:disabled {
+  background: var(--border);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .chapter-content {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+}

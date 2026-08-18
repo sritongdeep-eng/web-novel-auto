@@ -1,0 +1,25 @@
+name: Deploy Web Novel
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/chapters/**'
+      - 'site/**'
+      - 'scripts/build.py'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install --upgrade pip && python scripts/build.py
+      - run: python -m zipfile -c deploy.zip dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-novel-site
+          path: deploy.zip

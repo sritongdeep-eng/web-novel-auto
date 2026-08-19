@@ -137,5 +137,39 @@ def build_site():
     print(f"📁 Output: {OUTPUT_DIR}")
     print(f"🌐 Open: {OUTPUT_DIR / 'index.html'}")
 
+    # Generate RSS feed
+    rss_path = OUTPUT_DIR / "rss.xml"
+    rss_items = []
+    for ch in chapters:
+        chapter_url = f"https://sritongdeep-eng.github.io/web-novel-auto/chapters/{ch['file'].replace('.md', '.html')}"
+        desc_match = re.search(r'^(?:\*\*)?(.*?)(?:\*\*)?$', ch['content'].split('\n')[1].strip())
+        description = desc_match.group(1) if desc_match else ch['title']
+        rss_items.append(f"""    <item>
+      <title>{ch['title']}</title>
+      <link>{chapter_url}</link>
+      <description>{escape_xml(description)}</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>{chapter_url}</guid>
+    </item>""")
+
+    rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>The Veridian Protocol — Web Novel</title>
+    <link>https://sritongdeep-eng.github.io/web-novel-auto/</link>
+    <description>A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 19 Aug 2026 00:00:00 +0700</lastBuildDate>
+    <managingEditor>myhermes@example.com (MyHermes Studios)</managingEditor>
+    <webMaster>myhermes@example.com (MyHermes Studios)</webMaster>
+{os.linesep.join(rss_items)}
+  </channel>
+</rss>"""
+    rss_path.write_text(rss_content, encoding="utf-8")
+    print(f"📡 RSS generated: {rss_path}")
+
+def escape_xml(text: str) -> str:
+    return text.replace("&", "&").replace("<", "<").replace(">", ">")
+
 if __name__ == "__main__":
     build_site()

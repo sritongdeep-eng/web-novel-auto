@@ -112,7 +112,7 @@ def build_site():
     # Generate chapter list for JS
     chapter_list_js = "const chapters = [\n"
     for ch in chapters:
-        chapter_list_js += f'  {{ id: {ch["id"]}, title: "{ch["title"]}", file: "{ch["file"]}" }},\n'
+        chapter_list_js += f'  {{ id: {int(ch["id"])}, title: "{ch["title"]}", file: "{ch["file"]}" }},\n'
     chapter_list_js += "];\n"
 
     # Update main.js with chapter list

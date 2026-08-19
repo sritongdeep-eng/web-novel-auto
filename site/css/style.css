@@ -125,8 +125,11 @@ body {
 
 /* Nav buttons */
 .nav-button {
+  /* This pill is always a light cream/white gradient, in both themes, so
+     its text must stay a fixed dark color -- var(--text-primary) would
+     flip to near-white in dark mode and vanish against this background. */
   background: linear-gradient(135deg, #ffffff 0%, #fbf6ee 100%);
-  color: var(--text-primary);
+  color: #2D3748;
   border: 1px solid var(--border);
   padding: 0.65rem 1.1rem;
   border-radius: 999px;

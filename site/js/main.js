@@ -54,6 +54,9 @@ async function loadChapter(index) {
     document.getElementById('next-chapter').disabled = index === chapters.length - 1;
 
     renderChapterList();
+    updateChapterStats(markdown);
+    setupReactions(chapter.id);
+    setupBookmark(chapter.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     updateProgressBar();
     loadComments(chapter.id);
@@ -63,6 +66,77 @@ async function loadChapter(index) {
       <p><em>Chapter content loading...</em></p>
     `;
   }
+}
+
+function updateChapterStats(markdown) {
+  const plainText = markdown.replace(/[#*_`]/g, '').replace(/\s+/g, ' ').trim();
+  const wordCount = plainText.split(' ').length;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  const timeEl = document.getElementById('reading-time');
+  const countEl = document.getElementById('word-count');
+  if (timeEl) timeEl.textContent = `⏱️ ${readingTime} min read`;
+  if (countEl) countEl.textContent = `📝 ${wordCount} words`;
+}
+
+function setupReactions(chapterId) {
+  const container = document.getElementById('chapter-content');
+  if (!container) return;
+
+  const existing = container.querySelector('.reactions');
+  if (existing) existing.remove();
+
+  const reactionsDiv = document.createElement('div');
+  reactionsDiv.className = 'reactions';
+
+  const reactionTypes = [
+    { emoji: '🔥', key: 'fire' },
+    { emoji: '❤️', key: 'heart' },
+    { emoji: '👏', key: 'clap' },
+    { emoji: '😱', key: 'shock' }
+  ];
+
+  reactionTypes.forEach(type => {
+    const btn = document.createElement('button');
+    btn.className = 'reaction-btn';
+    const storageKey = `reactions_${chapterId}_${type.key}`;
+    const count = parseInt(localStorage.getItem(storageKey) || '0');
+    btn.innerHTML = `${type.emoji} <span>${count}</span>`;
+    btn.addEventListener('click', () => {
+      const currentCount = parseInt(localStorage.getItem(storageKey) || '0');
+      localStorage.setItem(storageKey, currentCount + 1);
+      btn.innerHTML = `${type.emoji} <span>${currentCount + 1}</span>`;
+      btn.classList.add('active');
+      setTimeout(() => btn.classList.remove('active'), 300);
+    });
+    reactionsDiv.appendChild(btn);
+  });
+
+  container.appendChild(reactionsDiv);
+}
+
+function setupBookmark(chapterId) {
+  const container = document.getElementById('chapter-content');
+  if (!container) return;
+
+  const existing = container.querySelector('.bookmark-btn');
+  if (existing) existing.remove();
+
+  const btn = document.createElement('button');
+  btn.className = 'bookmark-btn';
+  const storageKey = `bookmark_${chapterId}`;
+  const isBookmarked = localStorage.getItem(storageKey) === 'true';
+  btn.textContent = isBookmarked ? '🔖 Bookmarked' : '🔖 Bookmark';
+  if (isBookmarked) btn.classList.add('bookmarked');
+
+  btn.addEventListener('click', () => {
+    const current = localStorage.getItem(storageKey) === 'true';
+    localStorage.setItem(storageKey, !current);
+    btn.textContent = !current ? '🔖 Bookmarked' : '🔖 Bookmark';
+    btn.classList.toggle('bookmarked');
+  });
+
+  container.appendChild(btn);
 }
 
 function setupFontToggle() {

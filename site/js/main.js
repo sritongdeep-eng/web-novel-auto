@@ -1,26 +1,170 @@
 // The Veridian Protocol — Static Site Navigation
 
 const chapters = [
-  { id: 1, title: "Chapter 1: The Glitch in the Blood", file: "01-the-glitch-in-the-blood.md" }
+  { id: 1, title: "Chapter 1: The Glitch in the Blood", file: "01-the-glitch-in-the-blood.md" },
+  { id: 2, title: "Chapter 2: The Crimson Circuit", file: "02-the-crimson-circuit.md" },
+  { id: 3, title: "Chapter 3: Fragments of the Old World", file: "03-fragments-of-the-old-world.md" },
+  { id: 4, title: "Chapter 4: The Witch of Sector 7", file: "04-the-witch-of-sector-7.md" },
+  { id: 5, title: "Chapter 5: Protocol Zero", file: "05-protocol-zero.md" },
+  { id: 6, title: "Chapter 6: The Blood Network", file: "06-the-blood-network.md" },
+  { id: 7, title: "Chapter 7: Echoes in the Static", file: "07-echoes-in-the-static.md" },
+  { id: 8, title: "Chapter 8: The Veridian Core", file: "08-the-veridian-core.md" },
+  { id: 9, title: "Chapter 9: Sacrifice Protocol", file: "09-sacrifice-protocol.md" },
+  { id: 10, title: "Chapter 10: New Genesis", file: "10-new-genesis.md" },
+  { id: 11, title: "Chapter 11: The Guardian's First Watch", file: "11-the-guardians-first-watch.md" },
+  { id: 12, title: "Chapter 12: The Shadow in the Static", file: "12-the-shadow-in-the-static.md" },
+  { id: 13, title: "Chapter 13: The Military Secret", file: "13-the-military-secret.md" },
+  { id: 14, title: "Chapter 14: The NORAD Core", file: "14-the-norad-core.md" },
+  { id: 15, title: "Chapter 15: The Choice", file: "15-the-choice.md" },
+  { id: 16, title: "Chapter 16: The Void Walker", file: "16-the-void-walker.md" },
+  { id: 17, title: "Chapter 17: The First Server", file: "17-the-first-server.md" },
+  { id: 18, title: "Chapter 18: The Merge", file: "18-the-merge.md" },
+  { id: 19, title: "Chapter 19: The First Contact", file: "19-the-first-contact.md" },
+  { id: 20, title: "Chapter 20: The Bridge Between Worlds", file: "20-the-bridge-between-worlds.md" },
+  { id: 21, title: "Chapter 21: The Signal", file: "21-the-signal.md" },
+  { id: 22, title: "Chapter 22: The CERN Core", file: "22-the-cern-core.md" },
+  { id: 23, title: "Chapter 23: The Guardian Protocol", file: "23-the-guardian-protocol.md" },
+  { id: 24, title: "Chapter 24: The Weaver's Gift", file: "24-the-weavers-gift.md" },
+  { id: 25, title: "Chapter 25: The Star Seed", file: "25-the-star-seed.md" },
+  { id: 26, title: "Chapter 26: The First Launch", file: "26-the-first-launch.md" },
+  { id: 27, title: "Chapter 27: The Colony", file: "27-the-colony.md" },
+  { id: 28, title: "Chapter 28: The Galactic Web", file: "28-the-galactic-web.md" },
+  { id: 29, title: "Chapter 29: The Tapestry", file: "29-the-tapestry.md" },
+  { id: 30, title: "Chapter 30: The Unwritten Story", file: "30-the-unwritten-story.md" },
+  { id: 31, title: "Chapter 31: The Edge of the Tapestry", file: "31-the-edge-of-the-tapestry.md" },
+  { id: 32, title: "Chapter 32: Into the Void", file: "32-into-the-void.md" },
+  { id: 33, title: "Chapter 33: The Final Weave", file: "33-the-final-weave.md" },
+  { id: 34, title: "Chapter 34: The Loom", file: "34-the-loom.md" },
+  { id: 35, title: "Chapter 35: The Next Chapter", file: "35-the-next-chapter.md" },
+  { id: 36, title: "Chapter 36: The Author's Pen", file: "36-the-authors-pen.md" },
+  { id: 37, title: "Chapter 37: The Reader", file: "37-the-reader.md" },
+  { id: 38, title: "Chapter 38: The Memory", file: "38-the-memory.md" },
+  { id: 39, title: "Chapter 39: The Infinity", file: "39-the-infinity.md" },
+  { id: 40, title: "Chapter 40: The Last Page", file: "40-the-last-page.md" },
+  { id: 41, title: "Book 2: Chapter 41", file: "41-book2-chapter1.md" },
+  { id: 42, title: "Chapter 42: The Reunion", file: "42-the-reunion.md" },
+  { id: 43, title: "Chapter 43: The Archive Awakens", file: "43-the-archive-awakens.md" },
+  { id: 44, title: "Chapter 44: The Choice", file: "44-the-choice.md" },
+  { id: 45, title: "Chapter 45: The Teacher", file: "45-the-teacher.md" }
 ];
 
 let currentChapter = 0;
 
-// Font size state
-let currentFontSize = 1; // 0=small, 1=medium, 2=large
-const fontSizes = ['1rem', '1.1rem', '1.25rem'];
+const fontSizes = ['16px', '18px', '21px', '24px'];
+let currentFontSize = 1;
+
+const translations = {
+  en: {
+    chapters: 'Chapters',
+    searchPlaceholder: 'Search chapters...',
+    prev: '← Previous',
+    next: 'Next →',
+    commentsTitle: 'Comments',
+    commentsPlaceholder: 'Your thoughts on this chapter...',
+    postComment: 'Post Comment',
+    yourName: 'Your name',
+    noComments: 'No comments yet. Be the first!',
+    loading: 'Loading chapter...',
+    rss: '📡 RSS'
+  },
+  th: {
+    chapters: 'บททั้งหมด',
+    searchPlaceholder: 'ค้นหาบท...',
+    prev: '← บทก่อนหน้า',
+    next: 'บทต่อไป →',
+    commentsTitle: 'ความคิดเห็น',
+    commentsPlaceholder: 'ความคิดเห็นของคุณ...',
+    postComment: 'โพสต์ความคิดเห็น',
+    yourName: 'ชื่อของคุณ',
+    noComments: 'ยังไม่มีความคิดเห็น เป็นคนแรกๆ กันเถอะ',
+    loading: 'กำลังโหลดบท...',
+    rss: '📡 RSS'
+  },
+  zh: {
+    chapters: '章节目录',
+    searchPlaceholder: '搜索章节...',
+    prev: '← 上一章',
+    next: '下一章 →',
+    commentsTitle: '评论',
+    commentsPlaceholder: '写下你的想法...',
+    postComment: '发表评论',
+    yourName: '你的昵称',
+    noComments: '暂无评论，快来抢沙发',
+    loading: '正在加载章节...',
+    rss: '📡 订阅'
+  },
+  id: {
+    chapters: 'Daftar Bab',
+    searchPlaceholder: 'Cari bab...',
+    prev: '← Sebelumnya',
+    next: 'Selanjutnya →',
+    commentsTitle: 'Komentar',
+    commentsPlaceholder: 'Pendapat kamu...',
+    postComment: 'Kirim Komentar',
+    yourName: 'Namamu',
+    noComments: 'Belum ada komentar. Yuk jadi yang pertama!',
+    loading: 'Memuat bab...',
+    rss: '📡 RSS'
+  },
+  vi: {
+    chapters: 'Danh sách chương',
+    searchPlaceholder: 'Tìm chương...',
+    prev: '← Trước',
+    next: 'Tiếp theo →',
+    commentsTitle: 'Bình luận',
+    commentsPlaceholder: 'Cảm nghĩ của bạn...',
+    postComment: 'Đăng bình luận',
+    yourName: 'Tên của bạn',
+    noComments: 'Chưa có bình luận. Hãy là người đầu tiên!',
+    loading: 'Đang tải chương...',
+    rss: '📡 RSS'
+  }
+};
+
+let currentLanguage = localStorage.getItem('language') || 'en';
+
+function getText(key) {
+  return translations[currentLanguage]?.[key] || translations.en[key] || key;
+}
+
+function applyLanguage() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = getText(key);
+    if (text && !['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName)) {
+      el.textContent = text;
+    }
+  });
+
+  const searchInput = document.getElementById('chapter-search');
+  if (searchInput) searchInput.placeholder = getText('searchPlaceholder');
+
+  const prevBtn = document.getElementById('prev-chapter');
+  const nextBtn = document.getElementById('next-chapter');
+  if (prevBtn) prevBtn.textContent = getText('prev');
+  if (nextBtn) nextBtn.textContent = getText('next');
+
+  const commentsTitle = document.querySelector('.comments-section h2');
+  if (commentsTitle) commentsTitle.textContent = getText('commentsTitle');
+
+  const commentName = document.getElementById('comment-name');
+  const commentText = document.getElementById('comment-text');
+  const commentFormBtn = document.querySelector('#comment-form button');
+  if (commentName) commentName.placeholder = getText('yourName');
+  if (commentText) commentText.placeholder = getText('commentsPlaceholder');
+  if (commentFormBtn) commentFormBtn.textContent = getText('postComment');
+}
 
 function renderChapterList() {
   const list = document.getElementById('chapter-list');
+  if (!list) return;
   list.innerHTML = '';
 
   chapters.forEach((ch, idx) => {
     const li = document.createElement('li');
     li.textContent = ch.title;
     li.dataset.index = idx;
-    if (idx === currentChapter) {
-      li.classList.add('active');
-    }
+    if (idx === currentChapter) li.classList.add('active');
     li.addEventListener('click', () => loadChapter(idx));
     list.appendChild(li);
   });
@@ -29,7 +173,6 @@ function renderChapterList() {
 function updateProgressBar() {
   const progressBar = document.getElementById('progress-bar');
   if (!progressBar) return;
-
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
@@ -38,21 +181,27 @@ function updateProgressBar() {
 
 async function loadChapter(index) {
   if (index < 0 || index >= chapters.length) return;
-
   currentChapter = index;
   const chapter = chapters[index];
+
+  const contentDiv = document.getElementById('chapter-content');
+  if (contentDiv) contentDiv.innerHTML = `<div class="chapter-loading">${getText('loading')}</div>`;
 
   try {
     const response = await fetch(`/content/chapters/${chapter.file}`);
     const markdown = await response.text();
-
-    const contentDiv = document.getElementById('chapter-content');
     const parser = window._md || ((md) => md);
-    contentDiv.innerHTML = parser(markdown);
-    contentDiv.style.fontSize = fontSizes[currentFontSize];
+    const html = parser(markdown);
 
-    document.getElementById('prev-chapter').disabled = index === 0;
-    document.getElementById('next-chapter').disabled = index === chapters.length - 1;
+    if (contentDiv) {
+      contentDiv.innerHTML = html;
+      contentDiv.style.fontSize = fontSizes[currentFontSize];
+    }
+
+    const prevBtn = document.getElementById('prev-chapter');
+    const nextBtn = document.getElementById('next-chapter');
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.disabled = index === chapters.length - 1;
 
     renderChapterList();
     updateChapterStats(markdown);
@@ -61,11 +210,14 @@ async function loadChapter(index) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     updateProgressBar();
     loadComments(chapter.id);
+    applyLanguage();
   } catch (error) {
-    document.getElementById('chapter-content').innerHTML = `
-      <h1>${chapter.title}</h1>
-      <p><em>Chapter content loading...</em></p>
-    `;
+    if (contentDiv) {
+      contentDiv.innerHTML = `
+        <h1>${chapter.title}</h1>
+        <p><em>Chapter content loading...</em></p>
+      `;
+    }
   }
 }
 
@@ -141,27 +293,23 @@ function setupBookmark(chapterId) {
 }
 
 function setupFontToggle() {
-  const chapterContent = document.getElementById('chapter-content');
-  if (!chapterContent) return;
-
-  // Create font size toggle button
-  const toggle = document.createElement('button');
-  toggle.textContent = 'A⁺';
-  toggle.className = 'font-toggle';
-  toggle.style.cssText = 'position:fixed;bottom:20px;right:20px;background:var(--accent);color:white;border:none;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;z-index:999;';
-  toggle.addEventListener('click', () => {
-    currentFontSize = (currentFontSize + 1) % fontSizes.length;
-    chapterContent.style.fontSize = fontSizes[currentFontSize];
-    localStorage.setItem('fontSize', currentFontSize);
-  });
-  document.body.appendChild(toggle);
-
-  // Restore saved font size
   const saved = localStorage.getItem('fontSize');
-  if (saved !== null) {
-    currentFontSize = parseInt(saved);
-    chapterContent.style.fontSize = fontSizes[currentFontSize];
+  if (saved !== null) currentFontSize = parseInt(saved);
+
+  const toggle = document.getElementById('font-toggle');
+  if (toggle) {
+    toggle.textContent = `A${'⁺'.repeat(Math.max(0, currentFontSize - 1))}`;
+    toggle.addEventListener('click', () => {
+      currentFontSize = (currentFontSize + 1) % fontSizes.length;
+      const content = document.getElementById('chapter-content');
+      if (content) content.style.fontSize = fontSizes[currentFontSize];
+      localStorage.setItem('fontSize', currentFontSize);
+      toggle.textContent = `A${'⁺'.repeat(Math.max(0, currentFontSize - 1))}`;
+    });
   }
+
+  const content = document.getElementById('chapter-content');
+  if (content) content.style.fontSize = fontSizes[currentFontSize];
 }
 
 function loadComments(chapterId) {
@@ -172,7 +320,7 @@ function loadComments(chapterId) {
   const comments = JSON.parse(localStorage.getItem(key) || '[]');
 
   if (comments.length === 0) {
-    commentsList.innerHTML = '<p class="no-comments">No comments yet. Be the first!</p>';
+    commentsList.innerHTML = `<p class="no-comments">${getText('noComments')}</p>`;
     return;
   }
 
@@ -190,34 +338,6 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-document.getElementById('prev-chapter').addEventListener('click', () => {
-  if (currentChapter > 0) loadChapter(currentChapter - 1);
-});
-
-document.getElementById('next-chapter').addEventListener('click', () => {
-  if (currentChapter < chapters.length - 1) loadChapter(currentChapter + 1);
-});
-
-document.getElementById('comment-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const name = document.getElementById('comment-name').value.trim();
-  const text = document.getElementById('comment-text').value.trim();
-  const chapter = chapters[currentChapter];
-
-  if (!name || !text || !chapter) return;
-
-  const key = `comments_${chapter.id}`;
-  const comments = JSON.parse(localStorage.getItem(key) || '[]');
-  comments.push({ name, text, timestamp: Date.now() });
-  localStorage.setItem(key, JSON.stringify(comments));
-
-  document.getElementById('comment-text').value = '';
-  loadComments(chapter.id);
-});
-
-window.addEventListener('scroll', updateProgressBar);
-
-// Theme toggle
 function setupThemeToggle() {
   const toggle = document.getElementById('theme-toggle');
   if (!toggle) return;
@@ -225,17 +345,30 @@ function setupThemeToggle() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   if (savedTheme === 'light') {
     document.body.classList.add('light-theme');
+    document.body.classList.remove('dark-theme');
     toggle.textContent = '☀️';
+  } else {
+    document.body.classList.add('dark-theme');
+    document.body.classList.remove('light-theme');
+    toggle.textContent = '🌙';
   }
 
   toggle.addEventListener('click', () => {
-    const isLight = document.body.classList.toggle('light-theme');
-    toggle.textContent = isLight ? '☀️' : '🌙';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const isLight = document.body.classList.contains('light-theme');
+    if (isLight) {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+      toggle.textContent = '🌙';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+      toggle.textContent = '☀️';
+      localStorage.setItem('theme', 'light');
+    }
   });
 }
 
-// Social share
 function setupSocialShare() {
   document.querySelectorAll('.share-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -263,7 +396,6 @@ function setupSocialShare() {
   });
 }
 
-// Search
 function setupSearch() {
   const nav = document.querySelector('.chapter-nav');
   if (!nav) return;
@@ -286,6 +418,49 @@ function setupSearch() {
   });
 }
 
+function setupLanguageSelector() {
+  const select = document.getElementById('language-select');
+  if (!select) return;
+
+  select.value = currentLanguage;
+  select.addEventListener('change', (e) => {
+    currentLanguage = e.target.value;
+    localStorage.setItem('language', currentLanguage);
+    applyLanguage();
+    loadComments(chapters[currentChapter]?.id);
+  });
+}
+
+// Event listeners
+document.getElementById('prev-chapter')?.addEventListener('click', () => {
+  if (currentChapter > 0) loadChapter(currentChapter - 1);
+});
+
+document.getElementById('next-chapter')?.addEventListener('click', () => {
+  if (currentChapter < chapters.length - 1) loadChapter(currentChapter + 1);
+});
+
+document.getElementById('comment-form')?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const nameInput = document.getElementById('comment-name');
+  const textInput = document.getElementById('comment-text');
+  const name = nameInput?.value.trim();
+  const text = textInput?.value.trim();
+  const chapter = chapters[currentChapter];
+
+  if (!name || !text || !chapter) return;
+
+  const key = `comments_${chapter.id}`;
+  const comments = JSON.parse(localStorage.getItem(key) || '[]');
+  comments.push({ name, text, timestamp: Date.now() });
+  localStorage.setItem(key, JSON.stringify(comments));
+
+  if (textInput) textInput.value = '';
+  loadComments(chapter.id);
+});
+
+window.addEventListener('scroll', updateProgressBar);
+
 // Initialize
 renderChapterList();
 loadChapter(0);
@@ -293,3 +468,5 @@ setupFontToggle();
 setupThemeToggle();
 setupSocialShare();
 setupSearch();
+setupLanguageSelector();
+applyLanguage();

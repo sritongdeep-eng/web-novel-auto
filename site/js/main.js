@@ -142,7 +142,79 @@ document.getElementById('comment-form').addEventListener('submit', (e) => {
 
 window.addEventListener('scroll', updateProgressBar);
 
+// Theme toggle
+function setupThemeToggle() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    toggle.textContent = '☀️';
+  }
+
+  toggle.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-theme');
+    toggle.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+}
+
+// Social share
+function setupSocialShare() {
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const platform = btn.dataset.platform;
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      let shareUrl = '';
+
+      switch (platform) {
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+          break;
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case 'line':
+          shareUrl = `https://social-plugins.line.me/lineit/share?url=${url}`;
+          break;
+      }
+
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+      }
+    });
+  });
+}
+
+// Search
+function setupSearch() {
+  const nav = document.querySelector('.chapter-nav');
+  if (!nav) return;
+
+  const searchBox = document.createElement('div');
+  searchBox.className = 'search-box';
+  searchBox.innerHTML = '<input type="text" id="chapter-search" placeholder="Search chapters...">';
+  nav.insertBefore(searchBox, nav.firstChild);
+
+  const input = document.getElementById('chapter-search');
+  const list = document.getElementById('chapter-list');
+
+  input.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const items = list.querySelectorAll('li');
+    items.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(query) ? '' : 'none';
+    });
+  });
+}
+
 // Initialize
 renderChapterList();
 loadChapter(0);
 setupFontToggle();
+setupThemeToggle();
+setupSocialShare();
+setupSearch();

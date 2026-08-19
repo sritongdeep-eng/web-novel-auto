@@ -4,15 +4,18 @@ Web Novel Auto Publisher — Zero-Cost Static Site Generator
 Builds a mobile-friendly, dark-mode static site from Markdown chapters.
 """
 
+import json
 import os
 import re
 import shutil
+from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 CONTENT_DIR = BASE_DIR / "content"
 SITE_DIR = BASE_DIR / "site"
 OUTPUT_DIR = BASE_DIR / "dist"
+SITE_URL = "https://sritongdeep-eng.github.io/web-novel-auto"
 
 def read_markdown(filepath: Path) -> str:
     return filepath.read_text(encoding="utf-8")
@@ -167,6 +170,33 @@ def build_site():
 </rss>"""
     rss_path.write_text(rss_content, encoding="utf-8")
     print(f"📡 RSS generated: {rss_path}")
+
+    # Generate sitemap
+    sitemap_path = OUTPUT_DIR / "sitemap.xml"
+    today = datetime.now().strftime("%Y-%m-%d")
+    sitemap_items = [f'  <url>\n    <loc>{SITE_URL}/</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>']
+    for ch in chapters:
+        chapter_url = f"{SITE_URL}/chapters/{ch['file'].replace('.md', '.html')}"
+        sitemap_items.append(f'  <url>\n    <loc>{chapter_url}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>')
+    sitemap_content = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{os.linesep.join(sitemap_items)}\n</urlset>'
+    sitemap_path.write_text(sitemap_content, encoding="utf-8")
+    print(f"🗺️ Sitemap generated: {sitemap_path} ({len(sitemap_items)} URLs)")
+
+    # Generate search index JSON
+    search_index = []
+    for ch in chapters:
+        plain_text = re.sub(r'[#*_`]', '', ch['content'])
+        plain_text = re.sub(r'\s+', ' ', plain_text).strip()
+        search_index.append({
+            "id": ch["id"],
+            "title": ch["title"],
+            "file": ch["file"],
+            "url": f"/chapters/{ch['file'].replace('.md', '.html')}",
+            "excerpt": plain_text[:300]
+        })
+    search_path = OUTPUT_DIR / "search.json"
+    search_path.write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"🔍 Search index generated: {search_path}")
 
 def escape_xml(text: str) -> str:
     return text.replace("&", "&").replace("<", "<").replace(">", ">")

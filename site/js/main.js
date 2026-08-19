@@ -162,10 +162,12 @@ function renderChapterList() {
 
   chapters.forEach((ch, idx) => {
     const li = document.createElement('li');
-    li.textContent = ch.title;
-    li.dataset.index = idx;
+    const link = document.createElement('a');
+    link.href = `/chapters/${ch.file.replace('.md', '.html')}`;
+    link.textContent = ch.title;
+    link.className = 'chapter-link';
     if (idx === currentChapter) li.classList.add('active');
-    li.addEventListener('click', () => loadChapter(idx));
+    li.appendChild(link);
     list.appendChild(li);
   });
 }
@@ -230,6 +232,19 @@ function updateChapterStats(markdown) {
   const countEl = document.getElementById('word-count');
   if (timeEl) timeEl.textContent = `⏱️ ${readingTime} min read`;
   if (countEl) countEl.textContent = `📝 ${wordCount} words`;
+}
+
+function ensureChapterStats() {
+  const contentDiv = document.getElementById('chapter-content');
+  if (!contentDiv) return;
+
+  let stats = contentDiv.querySelector('.chapter-stats');
+  if (!stats) {
+    stats = document.createElement('div');
+    stats.className = 'chapter-stats';
+    stats.innerHTML = '<span id="reading-time"></span> <span id="word-count"></span>';
+    contentDiv.appendChild(stats);
+  }
 }
 
 function setupReactions(chapterId) {

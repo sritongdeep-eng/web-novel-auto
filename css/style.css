@@ -70,22 +70,29 @@ body {
 }
 
 #chapter-list li {
+  margin: 0;
+}
+
+#chapter-list a {
+  display: block;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--bg-primary);
   color: var(--text-primary);
+  text-decoration: none;
   cursor: pointer;
   font-size: 0.85rem;
   transition: all 0.2s ease;
 }
 
-#chapter-list li:hover {
+#chapter-list a:hover {
   border-color: var(--accent);
   background: #fff4ec;
+  color: var(--accent);
 }
 
-#chapter-list li.active {
+#chapter-list li.active a {
   background: var(--accent);
   color: white;
   border-color: var(--accent);
@@ -470,14 +477,23 @@ body.dark-theme .share-btn {
   color: var(--text-primary);
 }
 
-body.dark-theme #chapter-list li {
+body.dark-theme #chapter-list a {
   background: var(--bg-primary);
   border-color: var(--border);
   color: var(--text-primary);
 }
 
-body.dark-theme #chapter-list li:hover {
+body.dark-theme #chapter-list a:hover {
   background: #2e2c60;
+}
+
+/* Same specificity as the two rules above (id+class+2 elements), so it must
+   come after them in source order to win — otherwise the active chapter
+   loses its highlight in dark mode. */
+body.dark-theme #chapter-list li.active a {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
 }
 
 body.dark-theme .comment-form input,

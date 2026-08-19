@@ -200,6 +200,16 @@ def build_site():
         dst = repo_chapters_dir / built.name
         dst.write_bytes(built.read_bytes())
 
+    # Sync entire build output back to repo root so GitHub Pages serves updated files
+    for item in sorted(OUTPUT_DIR.iterdir()):
+        dst = BASE_DIR / item.name
+        if item.is_dir():
+            if dst.exists():
+                shutil.rmtree(dst)
+            shutil.copytree(item, dst)
+        else:
+            dst.write_bytes(item.read_bytes())
+
     print(f"✅ Built {len(chapters)} chapter(s)")
     print(f"📁 Output: {OUTPUT_DIR}")
     print(f"🌐 Open: {OUTPUT_DIR / 'index.html'}")

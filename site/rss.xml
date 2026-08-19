@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>The Veridian Protocol — Web Novel</title>
+    <link>https://sritongdeep-eng.github.io/web-novel-auto/</link>
+    <description>A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.</description>
+    <language>en</language>
+    <lastBuildDate>Tue, 19 Aug 2026 00:00:00 +0700</lastBuildDate>
+    <managingEditor>myhermes@example.com (MyHermes Studios)</managingEditor>
+    <webMaster>myhermes@example.com (MyHermes Studios)</webMaster>
+
+    <item>
+      <title>Chapter 1: The Glitch in the Blood</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/01-the-glitch-in-the-blood.html</link>
+      <description>Kael discovers he can interface with machines through blood magic without sacrificing his own vitality.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/01-the-glitch-in-the-blood.html</guid>
+    </item>
+
+    <item>
+      <title>Chapter 2: The Crimson Circuit</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/02-the-crimson-circuit.html</link>
+      <description>Kael meets a secret society of blood-tech practitioners who reveal he's a Null Conduit.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/02-the-crimson-circuit.html</guid>
+    </item>
+
+    <item>
+      <title>Chapter 3: Fragments of the Old World</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/03-fragments-of-the-old-world.html</link>
+      <description>Kael uncovers ancient server relics that predate the Collapse, containing AI echoes.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/03-fragments-of-the-old-world.html</guid>
+    </item>
+
+    <item>
+      <title>Chapter 4: The Witch of Sector 7</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/04-the-witch-of-sector-7.html</link>
+      <description>Alliance with a cybernetic sorceress who teaches him to read the static between worlds.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/04-the-witch-of-sector-7.html</guid>
+    </item>
+
+    <item>
+      <title>Chapter 5: Protocol Zero</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/05-protocol-zero.html</link>
+      <description>The megacorporation discovers his ability and marks him for extraction.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/05-protocol-zero.html</guid>
+    </item>
+
+    <item>
+      <title>Chapter 40: The Last Page</title>
+      <link>https://sritongdeep-eng.github.io/web-novel-auto/chapters/40-the-last-page.html</link>
+      <description>The final chapter. Kael and Vera step through the doorway into infinity.</description>
+      <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
+      <guid>https://sritongdeep-eng.github.io/web-novel-auto/chapters/40-the-last-page.html</guid>
+    </item>
+  </channel>
+</rss>

@@ -159,6 +159,95 @@ body {
   border-top: 1px solid var(--border);
 }
 
+.site-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 1000;
+  transition: width 0.1s;
+}
+
+/* Comments Section */
+.comments-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.comments-section h2 {
+  color: var(--accent);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#comments-list {
+  margin-bottom: 1.5rem;
+}
+
+.comment {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment-author {
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.comment-text {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.comment-form input,
+.comment-form textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.comment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
 @media (max-width: 600px) {
   .site-title {
     font-size: 1.5rem;
@@ -171,5 +260,13 @@ body {
   .chapter-content {
     padding: 1.5rem;
     font-size: 1rem;
+  }
+
+  .chapter-nav-bottom {
+    flex-direction: column;
+  }
+
+  .comments-section {
+    padding: 1.5rem;
   }
 }

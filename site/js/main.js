@@ -43,7 +43,7 @@ async function loadChapter(index) {
   const chapter = chapters[index];
 
   try {
-    const response = await fetch(`/chapters/${chapter.file}`);
+    const response = await fetch(`/content/chapters/${chapter.file}`);
     const markdown = await response.text();
 
     const contentDiv = document.getElementById('chapter-content');

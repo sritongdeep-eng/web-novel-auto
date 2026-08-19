@@ -17,7 +17,3 @@ He saw humanity’s future — not as conquerors, not as slaves, but as weavers.
 “What do we do now?” Vera asked.
 
 Kael smiled. “We weave.”
-
----
-
-*To be continued in Chapter 29: The Tapestry*

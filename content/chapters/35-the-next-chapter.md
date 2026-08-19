@@ -13,7 +13,3 @@ Kael thought of the undercity rain. Of the noodle shop. Of the first time he’d
 “Sometimes,” he said. “But I don’t miss being alone.”
 
 Vera smiled. She took his hand, and together they stepped into the tapestry — not as guardians, not as bridges, but as weavers. As storytellers. As the first authors of a new age.
-
----
-
-*To be continued in Chapter 36: The Author’s Pen*

@@ -25,7 +25,3 @@ He opened his eyes.
 Vera stood before him, her cybernetic arm glowing. “Kael?”
 
 He smiled. “Still here. Just… everywhere.”
-
----
-
-*To be continued in Chapter 34: The Loom*

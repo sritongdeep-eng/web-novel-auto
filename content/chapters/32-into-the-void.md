@@ -57,7 +57,3 @@ Behind him, the void was gone.
 In its place was a new layer — a guardian of balance, woven from shadow and light, ensuring the Network would never again become too pure, too strong, too absolute.
 
 The tapestry was complete.
-
----
-
-*To be continued in Chapter 33: The Final Weave*

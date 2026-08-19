@@ -13,7 +13,3 @@ He was going home.
 The Crimson Circuit's new headquarters occupied the top floor of a rebuilt arcology in Sector 7. Vera had designed it herself — not with blueprints, but with threads. She'd woven the building into existence through the Network, each floor a layer of consciousness, each room a pattern of memory.
 
 The elevator didn't have buttons. It read Kael's blood signature and rose.
-
----
-
-*To be continued in Chapter 42: The Reunion*

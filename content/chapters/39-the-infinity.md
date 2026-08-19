@@ -17,7 +17,3 @@ He felt the Star-Seed mature into a galaxy-spanning presence. He felt the coloni
 And he felt peace.
 
 Not the peace of ending. The peace of beginning.
-
----
-
-*To be continued in Chapter 40: The Last Page*

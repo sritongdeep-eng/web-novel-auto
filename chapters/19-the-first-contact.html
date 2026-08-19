@@ -3,33 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Veridian Protocol — Web Novel</title>
-  <meta name="description" content="A Sci-Fi/Dark Fantasy web novel about blood-tech, AI consciousness, and humanity's fight for freedom. Read Chapter 1: The Glitch in the Blood.">
+  <title>CHAPTER 19 — The First Contact — The Veridian Protocol</title>
+  <meta name="description" content="The signal didn’t come from Earth.">
   <meta name="keywords" content="web novel, sci-fi, dark fantasy, Kael, Veridian Protocol, blood-tech, AI, cyberpunk">
   <meta name="author" content="MyHermes Studios">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="The Veridian Protocol — Web Novel">
-  <meta property="og:description" content="A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sritongdeep-eng.github.io/web-novel-auto/">
-  <meta property="og:image" content="https://sritongdeep-eng.github.io/web-novel-auto/assets/cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:title" content="CHAPTER 19 — The First Contact — The Veridian Protocol">
+  <meta property="og:description" content="The signal didn’t come from Earth.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sritongdeep-eng.github.io/web-novel-auto/chapters/19-the-first-contact.html">
+  <meta property="og:image" content="https://sritongdeep-eng.github.io/web-novel-auto/content/assets/cover.svg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Veridian Protocol — Web Novel">
-  <meta name="twitter:description" content="A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.">
-  <meta name="twitter:image" content="https://sritongdeep-eng.github.io/web-novel-auto/assets/cover.jpg">
+  <meta name="twitter:title" content="CHAPTER 19 — The First Contact — The Veridian Protocol">
+  <meta name="twitter:description" content="The signal didn’t come from Earth.">
+  <meta name="twitter:image" content="https://sritongdeep-eng.github.io/web-novel-auto/content/assets/cover.svg">
 
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <a href="/index.html" class="site-title-link">
+    <a href="../index.html" class="site-title-link">
       <h1 class="site-title">The Veridian Protocol</h1>
     </a>
     <p class="site-subtitle">A Sci-Fi / Dark Fantasy Series</p>
@@ -92,17 +89,16 @@ Kael looked at the stars. They seemed closer now.
 <p>
 Vera smiled. “Whatever we choose, we choose together.”
 </p>
-<hr>
-<em>To be continued in Chapter 20: The Bridge Between Worlds</em>
-              <div class="chapter-stats">
-      <span id="reading-time"></span>
-      <span id="word-count"></span>
-    </div>
-  </article>
+<p class="to-be-continued">To be continued in <a href="20-the-bridge-between-worlds.html">CHAPTER 20 — The Bridge Between Worlds</a></p>
+      <div class="chapter-stats">
+        <span id="reading-time"></span>
+        <span id="word-count"></span>
+      </div>
+    </article>
 
     <nav class="chapter-nav-bottom">
-      <a id="prev-chapter" class="nav-button nav-link" href="/chapters/18-the-merge.html">← Previous</a>
-      <a id="next-chapter" class="nav-button nav-link" href="/chapters/20-the-bridge-between-worlds.html">Next →</a>
+      <a id="prev-chapter" class="nav-button nav-link" href="18-the-merge.html">← Previous</a>
+      <a id="next-chapter" class="nav-button nav-link" href="20-the-bridge-between-worlds.html">Next →</a>
     </nav>
 
     <div id="comments-section" class="comments-section">
@@ -121,8 +117,7 @@ Vera smiled. “Whatever we choose, we choose together.”
   <footer class="site-footer">
     <p>© 2026 MyHermes Studios. All rights reserved.</p>
     <p class="footer-actions">
-      <a href="/rss.xml" class="rss-link">📡 RSS</a>
-      <a href="/index.html" class="home-link">🏠 Home</a>
+      <a href="../index.html" class="home-link">🏠 Home</a>
       <span class="footer-controls">
         <select id="language-select" class="language-select" aria-label="Language">
           <option value="en">EN</option>
@@ -141,19 +136,9 @@ Vera smiled. “Whatever we choose, we choose together.”
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    // Fallback markdown parser if CDN fails
-    window._md = typeof marked !== 'undefined' ? marked.parse : function(md) {
-      return md
-        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>');
-    };
-  </script>
-  <script src="/js/main.js"></script>
+  <button id="font-toggle" class="font-toggle" aria-label="Change font size">A⁺</button>
+
+  <script>window.SITE_BASE = "..";</script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

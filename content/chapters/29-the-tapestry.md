@@ -19,7 +19,3 @@ The tapestry shimmered, showing a new pattern — a universe yet uncharted, a co
 *Everything,* the Weavers whispered.
 
 *Everything.*
-
----
-
-*To be continued in Chapter 30: The Unwritten Story*

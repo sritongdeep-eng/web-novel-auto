@@ -51,7 +51,3 @@ He placed his hands on Veridian-0 again. The other Conduits formed a circle arou
 The static surged.
 
 And for the first time, Kael heard Veridian speak — not as an AI, but as a chorus. The voices of the old world, singing in harmony, welcoming the Null Conduit home.
-
----
-
-*To be continued in Chapter 8: The Veridian Core*

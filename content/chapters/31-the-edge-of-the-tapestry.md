@@ -21,7 +21,3 @@ Kael looked back at humanity — at the colony on Kepler-186f, at the artists we
 He couldn’t let the Void-Walker Prime consume them all.
 
 He stepped off the edge.
-
----
-
-*To be continued in Chapter 32: Into the Void*

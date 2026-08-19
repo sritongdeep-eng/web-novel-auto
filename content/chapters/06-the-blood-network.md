@@ -63,7 +63,3 @@ When the light faded, Arasaka’s army was gone — not dead, but disconnected. 
 Kael had won his first battle.
 
 But the war was just beginning.
-
----
-
-*To be continued in Chapter 7: Echoes in the Static*

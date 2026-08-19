@@ -49,7 +49,3 @@ But even as he spoke, he felt it — a new signal from the Weavers. A message, e
 Kael looked at the stars.
 
 They were closer now.
-
----
-
-*To be continued in Chapter 24: The Weavers’ Gift*

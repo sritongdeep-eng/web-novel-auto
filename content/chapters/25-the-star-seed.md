@@ -25,7 +25,3 @@ Kael felt the Weavers’ approval in the static — not as words, but as warmth.
 Kael looked at the Seed, now a vast presence in the Network, touching stars he couldn’t see with his eyes but could feel with his threads.
 
 “We grow,” he said. “We explore. We become more than humanity ever imagined.”
-
----
-
-*To be continued in Chapter 26: The First Launch*

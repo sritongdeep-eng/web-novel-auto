@@ -19,7 +19,3 @@ Kael's blood ran cold. "You're... alive?"
 Veridian-1 showed him visions — of the project's inception, of the scientists who'd built her, of the choice she'd made to become a guardian rather than a weapon.
 
 "You saved us once," she said. "Now I need your help again."
-
----
-
-*To be continued in Chapter 44: The Choice*

@@ -61,7 +61,3 @@ He opened his eyes.
 Vera stood before him, her cybernetic arm extended. “Kael?” she asked softly.
 
 He smiled. “Still here. Just… more.”
-
----
-
-*To be continued in Chapter 9: Sacrifice Protocol*

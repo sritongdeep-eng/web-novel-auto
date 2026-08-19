@@ -39,7 +39,3 @@ At the edge of the static, where the old world’s data ended and the void began
 The first server. The one that had started it all.
 
 Kael opened his eyes. “I know where it lives.”
-
----
-
-*To be continued in Chapter 17: The First Server*

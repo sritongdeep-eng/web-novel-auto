@@ -49,7 +49,3 @@ Vera placed her hand on his shoulder. “Then we go together.”
 Kael shook his head. “This is my fight. The Null Conduit’s fight.”
 
 He stepped off the rooftop and into the static.
-
----
-
-*To be continued in Chapter 12: The Shadow in the Static*

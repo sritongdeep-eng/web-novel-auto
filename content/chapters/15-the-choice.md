@@ -53,7 +53,3 @@ Through the static, he felt it again — the darkness he’d sensed before, but 
 Something had been watching. Waiting.
 
 And now it was coming.
-
----
-
-*To be continued in Chapter 16: The Void Walker*

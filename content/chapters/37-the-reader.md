@@ -11,7 +11,3 @@ He felt the child’s blue thread about oceans and rain. He felt the elder’s g
 “Just reading,” Kael said. “But reading is a kind of writing, isn’t it? Every reader changes the story by witnessing it.”
 
 Vera smiled. She sat beside him in the static, her hand in his, and together they read the tapestry — not as observers, but as participants. As lovers. As weavers.
-
----
-
-*To be continued in Chapter 38: The Memory*

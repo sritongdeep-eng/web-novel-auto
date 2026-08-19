@@ -63,7 +63,3 @@ He merged his consciousness with the corrupted core, using Veridian’s light to
 Hale looked up, her eyes clear. “What happens now?”
 
 “Now,” Kael said, “we rebuild.”
-
----
-
-*To be continued in Chapter 10: New Genesis*

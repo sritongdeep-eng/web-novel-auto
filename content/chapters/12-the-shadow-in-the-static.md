@@ -65,7 +65,3 @@ Inside was a data chip. Not Arasaka. Not corporate. Military. Pre-Collapse.
 And on the chip, a label: **PROJECT VERIDIAN — CLASSIFIED**.
 
 Kael pocketed the chip. He had a new mystery to solve.
-
----
-
-*To be continued in Chapter 13: The Military Secret*

@@ -64,6 +64,19 @@ def markdown_to_html(md_text: str) -> str:
 
     return '\n'.join(paragraphs)
 
+def get_excerpt(content: str, length: int = 200) -> str:
+    """First non-heading paragraph, plain text, for meta descriptions / RSS."""
+    for line in content.split('\n'):
+        stripped = line.strip()
+        if stripped and not stripped.startswith('#') and not stripped.startswith('---'):
+            plain = re.sub(r'[*_`]', '', stripped)
+            return (plain[:length] + '…') if len(plain) > length else plain
+    return ""
+
+def escape_attr(text: str) -> str:
+    return (text.replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;").replace('"', "&quot;"))
+
 def get_chapters() -> list:
     chapters = []
     chapter_dir = CONTENT_DIR / "chapters"
@@ -100,98 +113,76 @@ def build_site():
     # Copy content
     shutil.copytree(CONTENT_DIR, OUTPUT_DIR / "content")
 
-    # Read template
-    template = (SITE_DIR / "templates" / "index.html").read_text(encoding="utf-8")
-
     # Build chapters
     chapters = get_chapters()
     if not chapters:
         print("⚠️  No chapters found!")
         return
 
-    # Generate chapter list for JS
+    # Generate chapter list for JS (shared by homepage grid + chapter-page sidebar)
     chapter_list_js = "const chapters = [\n"
     for ch in chapters:
-        chapter_list_js += f'  {{ id: {int(ch["id"])}, title: "{ch["title"]}", file: "{ch["file"]}" }},\n'
+        title_js = ch["title"].replace('"', '\\"')
+        chapter_list_js += f'  {{ id: {int(ch["id"])}, title: "{title_js}", file: "{ch["file"]}" }},\n'
     chapter_list_js += "];\n"
 
-    # Update main.js with chapter list
+    # Inject chapter list into main.js
     main_js = (SITE_DIR / "js" / "main.js").read_text(encoding="utf-8")
-    main_js = re.sub(r'const chapters = \[.*?\];', chapter_list_js, main_js, flags=re.DOTALL)
+    main_js = re.sub(r'const chapters = \[.*?\];', chapter_list_js, main_js, count=1, flags=re.DOTALL)
     (OUTPUT_DIR / "js" / "main.js").write_text(main_js, encoding="utf-8")
 
-    # Inject marked.js CDN
-    template = template.replace('</head>', '  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>\n</head>')
+    # Write homepage (a real landing page — distinct from the chapter-reading template)
+    homepage_template = (SITE_DIR / "templates" / "index.html").read_text(encoding="utf-8")
+    (OUTPUT_DIR / "index.html").write_text(homepage_template, encoding="utf-8")
 
-    # Write index.html
-    (OUTPUT_DIR / "index.html").write_text(template, encoding="utf-8")
-
-    # Generate individual chapter pages (optional, for SEO)
+    # Generate individual chapter pages
+    chapter_template = (SITE_DIR / "templates" / "chapter.html").read_text(encoding="utf-8")
     chapters_dir = OUTPUT_DIR / "chapters"
     chapters_dir.mkdir(exist_ok=True)
+
     for idx, ch in enumerate(chapters):
-        chapter_html = template.replace(
-            '<article class="chapter-content" id="chapter-content">',
-            f'<article class="chapter-content" id="chapter-content">\n{markdown_to_html(ch["content"])}'
-        )
+        html_filename = ch['file'].replace('.md', '.html')
+        excerpt = get_excerpt(ch["content"])
 
-        # Remove static loading placeholder if present
-        chapter_html = chapter_html.replace(
-            '<div class="chapter-loading">Loading chapter...</div>\n',
-            ''
-        )
+        body_html = markdown_to_html(ch["content"])
 
-        # Ensure chapter stats container exists
-        if '<div class="chapter-stats">' not in chapter_html:
-            chapter_html = chapter_html.replace(
-                '  </article>',
-                '      <div class="chapter-stats">\n      <span id="reading-time"></span>\n      <span id="word-count"></span>\n    </div>\n  </article>'
-            )
-
-        # Set prev/next links based on chapter order
         prev_ch = chapters[idx - 1] if idx > 0 else None
         next_ch = chapters[idx + 1] if idx < len(chapters) - 1 else None
 
-        prev_href = f'/chapters/{prev_ch["file"].replace(".md", ".html")}' if prev_ch else '/index.html'
-        next_href = f'/chapters/{next_ch["file"].replace(".md", ".html")}' if next_ch else '/index.html'
-
-        chapter_html = chapter_html.replace(
-            '<a id="prev-chapter" class="nav-button nav-link" href="/index.html">← Previous</a>',
-            f'<a id="prev-chapter" class="nav-button nav-link" href="{prev_href}">← Previous</a>'
-        )
-        chapter_html = chapter_html.replace(
-            '<a id="next-chapter" class="nav-button nav-link" href="/index.html">Next →</a>',
-            f'<a id="next-chapter" class="nav-button nav-link" href="{next_href}">Next →</a>'
-        )
-
-        # Disable Next button on the final chapter
-        if not next_ch:
-            chapter_html = chapter_html.replace(
-                '<a id="next-chapter" class="nav-button nav-link" href="/index.html">Next →</a>',
-                '<button id="next-chapter" class="nav-button nav-button-disabled" disabled>Next →</button>'
-            )
-
-        # Ensure footer language selector exists
-        if 'id="language-select"' not in chapter_html:
-            chapter_html = chapter_html.replace(
-                '<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>',
-                '<select id="language-select" class="language-select" aria-label="Language">\n          <option value="en">EN</option>\n          <option value="th">TH</option>\n          <option value="zh">ZH</option>\n          <option value="id">ID</option>\n          <option value="vi">VI</option>\n        </select>\n        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>'
-            )
-
-        # Ensure "To be continued" uses the correct next chapter when possible
+        # "To be continued" is generated from real chapter data, never hand-written
+        # in the source Markdown, so it can never drift out of sync or go missing.
         if next_ch:
-            next_title = next_ch['title']
             next_file = next_ch['file'].replace('.md', '.html')
-            chapter_html = chapter_html.replace(
-                'To be continued in <a href="/chapters/02-the-crimson-circuit.html">Chapter 2: The Crimson Circuit</a>',
-                f'To be continued in <a href="/chapters/{next_file}">{next_title}</a>'
-            )
-            chapter_html = chapter_html.replace(
-                'To be continued in Chapter 46: The New Generation',
-                f'To be continued in {next_title}'
+            body_html += (
+                f'\n<p class="to-be-continued">To be continued in '
+                f'<a href="{next_file}">{escape_attr(next_ch["title"])}</a></p>'
             )
 
-        (chapters_dir / f"{ch['file'].replace('.md', '.html')}").write_text(chapter_html, encoding="utf-8")
+        if prev_ch:
+            prev_html = f'<a id="prev-chapter" class="nav-button nav-link" href="{prev_ch["file"].replace(".md", ".html")}">← Previous</a>'
+        else:
+            prev_html = '<button id="prev-chapter" class="nav-button nav-button-disabled" disabled>← Previous</button>'
+
+        if next_ch:
+            next_html = f'<a id="next-chapter" class="nav-button nav-link" href="{next_ch["file"].replace(".md", ".html")}">Next →</a>'
+        else:
+            next_html = '<button id="next-chapter" class="nav-button nav-button-disabled" disabled>Next →</button>'
+
+        chapter_html = chapter_template
+        chapter_html = chapter_html.replace('__CHAPTER_TITLE__', escape_attr(ch["title"]))
+        chapter_html = chapter_html.replace('__CHAPTER_EXCERPT__', escape_attr(excerpt))
+        chapter_html = chapter_html.replace('__CHAPTER_URL__', f"{SITE_URL}/chapters/{html_filename}")
+        chapter_html = chapter_html.replace('__CHAPTER_HTML__', body_html)
+        chapter_html = chapter_html.replace(
+            '<a id="prev-chapter" class="nav-button nav-link" href="__PREV_HREF__">← Previous</a>',
+            prev_html
+        )
+        chapter_html = chapter_html.replace(
+            '<a id="next-chapter" class="nav-button nav-link" href="__NEXT_HREF__">Next →</a>',
+            next_html
+        )
+
+        (chapters_dir / html_filename).write_text(chapter_html, encoding="utf-8")
 
     # Copy built chapter pages to repo root `chapters/` so GitHub Pages serves fresh generated pages
     repo_chapters_dir = BASE_DIR / "chapters"
@@ -218,11 +209,10 @@ def build_site():
     rss_path = OUTPUT_DIR / "rss.xml"
     rss_items = []
     for ch in chapters:
-        chapter_url = f"https://sritongdeep-eng.github.io/web-novel-auto/chapters/{ch['file'].replace('.md', '.html')}"
-        desc_match = re.search(r'^(?:\*\*)?(.*?)(?:\*\*)?$', ch['content'].split('\n')[1].strip())
-        description = desc_match.group(1) if desc_match else ch['title']
+        chapter_url = f"{SITE_URL}/chapters/{ch['file'].replace('.md', '.html')}"
+        description = get_excerpt(ch['content'])
         rss_items.append(f"""    <item>
-      <title>{ch['title']}</title>
+      <title>{escape_xml(ch['title'])}</title>
       <link>{chapter_url}</link>
       <description>{escape_xml(description)}</description>
       <pubDate>Tue, 19 Aug 2026 00:00:00 +0700</pubDate>
@@ -233,7 +223,7 @@ def build_site():
 <rss version="2.0">
   <channel>
     <title>The Veridian Protocol — Web Novel</title>
-    <link>https://sritongdeep-eng.github.io/web-novel-auto/</link>
+    <link>{SITE_URL}/</link>
     <description>A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.</description>
     <language>en</language>
     <lastBuildDate>Tue, 19 Aug 2026 00:00:00 +0700</lastBuildDate>
@@ -265,7 +255,7 @@ def build_site():
             "id": ch["id"],
             "title": ch["title"],
             "file": ch["file"],
-            "url": f"/chapters/{ch['file'].replace('.md', '.html')}",
+            "url": f"chapters/{ch['file'].replace('.md', '.html')}",
             "excerpt": plain_text[:300]
         })
     search_path = OUTPUT_DIR / "search.json"
@@ -273,7 +263,7 @@ def build_site():
     print(f"🔍 Search index generated: {search_path}")
 
 def escape_xml(text: str) -> str:
-    return text.replace("&", "&").replace("<", "<").replace(">", ">")
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 if __name__ == "__main__":
     build_site()

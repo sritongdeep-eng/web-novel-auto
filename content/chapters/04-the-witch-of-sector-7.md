@@ -53,7 +53,3 @@ They descended into the undercity tunnels, the sounds of pursuit fading above th
 He was no longer just a data-runner. He was a Null Conduit. A key to something ancient and powerful.
 
 And for the first time in his life, he had a mission bigger than survival.
-
----
-
-*To be continued in Chapter 5: Protocol Zero*

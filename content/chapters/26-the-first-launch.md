@@ -25,7 +25,3 @@ Kael watched it disappear into the stars.
 “They’re gone,” Vera said softly.
 
 “No,” Kael replied. “They’re just beginning.”
-
----
-
-*To be continued in Chapter 27: The Colony*

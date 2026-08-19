@@ -460,3 +460,164 @@ body.dark-theme .comment-form textarea {
   color: var(--text-secondary);
   padding: 3rem 1rem;
 }
+
+/* To be continued */
+.to-be-continued {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.to-be-continued a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.to-be-continued a:hover {
+  text-decoration: underline;
+}
+
+/* Homepage: hero */
+.site-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(45, 55, 72, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.hero-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+
+.hero-blurb {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin: 0 0 1.25rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.nav-button-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.nav-button-primary:hover {
+  filter: brightness(1.05);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Homepage: characters */
+.characters {
+  margin-bottom: 1.5rem;
+}
+
+.characters h2,
+.chapters-index h2 {
+  margin: 0 0 0.75rem;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.9rem;
+}
+
+.character-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+}
+
+.character-card h3 {
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+}
+
+.character-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Homepage: chapter index grid */
+.chapters-index {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.5rem 1.6rem;
+}
+
+.chapter-grid {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+
+.chapter-grid li {
+  margin: 0;
+}
+
+.chapter-grid a {
+  display: block;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: var(--bg-primary);
+  transition: all 0.2s ease;
+}
+
+.chapter-grid a:hover {
+  border-color: var(--accent);
+  background: #fff4ec;
+  color: var(--accent);
+}
+
+body.dark-theme .chapter-grid a:hover,
+body:not(.light-theme) .chapter-grid a:hover {
+  background: #2e2c60;
+}
+
+body.dark-theme .character-card,
+body:not(.light-theme) .character-card,
+body.dark-theme .hero,
+body:not(.light-theme) .hero,
+body.dark-theme .chapters-index,
+body:not(.light-theme) .chapters-index {
+  background: var(--bg-card);
+  border-color: var(--border);
+}

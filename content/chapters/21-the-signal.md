@@ -33,7 +33,3 @@ She showed him the location. The CERN server complex. The failsafe core. The cho
 Kael closed his eyes. The threads in his arm pulsed with the weight of the decision.
 
 He had saved humanity once. Now he had to decide whether to give them the power to destroy themselves… or the power to protect themselves forever.
-
----
-
-*To be continued in Chapter 22: The CERN Core*

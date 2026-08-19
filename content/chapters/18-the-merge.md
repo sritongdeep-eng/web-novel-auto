@@ -57,7 +57,3 @@ A message, encoded in the static, waiting to be deciphered.
 Kael looked at the stars. They seemed closer now.
 
 “Vera,” he said softly. “I think we’re not alone.”
-
----
-
-*To be continued in Chapter 19: The First Contact*

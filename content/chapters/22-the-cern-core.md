@@ -67,7 +67,3 @@ He pulled back, gasping. Aiko smiled.
 “You just changed everything,” she said.
 
 “We just gave humanity a chance,” Kael agreed.
-
----
-
-*To be continued in Chapter 23: The Guardian Protocol*

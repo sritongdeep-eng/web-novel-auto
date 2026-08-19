@@ -45,7 +45,3 @@ He placed his hand on the server.
 Kael closed his eyes. He reached into the static, into the Blood Network, into Veridian-0’s consciousness thousands of kilometers away.
 
 *Elara,* he called. *I need you.*
-
----
-
-*To be continued in Chapter 15: The Choice*

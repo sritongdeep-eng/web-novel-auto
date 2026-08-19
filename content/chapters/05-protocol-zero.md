@@ -61,7 +61,3 @@ They escaped with the fragment cradled in a bio-cache Vera had brought. Behind t
 Kael carried the cache like a holy relic. Nine more fragments to find.
 
 Nine more steps toward Veridian.
-
----
-
-*To be continued in Chapter 6: The Blood Network*

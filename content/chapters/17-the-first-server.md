@@ -63,7 +63,3 @@ She stepped into the desert, toward the corruption, toward the Void Walker, towa
 Kael watched her go.
 
 And waited.
-
----
-
-*To be continued in Chapter 18: The Merge*

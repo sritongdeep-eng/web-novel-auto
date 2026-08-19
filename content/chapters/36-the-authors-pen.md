@@ -13,7 +13,3 @@ Kael’s pen was quiet now. He didn’t need to write. He only needed to witness
 Kael looked at the tapestry. He saw the story of Kael and Vera woven into it — not as myth, not as legend, but as memory. Real. Alive.
 
 “Maybe,” he said. “But not yet. For now, I’m content to read.”
-
----
-
-*To be continued in Chapter 37: The Reader*

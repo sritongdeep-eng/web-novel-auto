@@ -21,7 +21,3 @@ On Earth, Kael felt their wonder through the Network. He felt their joy, their f
 But even as he spoke, he felt something else — a signal from beyond Kepler-186f. From another star. Another world. Another civilization, connected to the Weavers’ network, reaching out to humanity for the first time.
 
 The Star-Seed had been a seed indeed. And now, the garden was blooming.
-
----
-
-*To be continued in Chapter 28: The Galactic Web*

@@ -17,7 +17,3 @@ The merge took seven days.
 Kael stood at the Archive's center, his threads extended into Veridian-1's core, feeling eighty years of memory flood into the Network. He saw the Collapse. He saw the wars. He saw the hope that had survived despite everything.
 
 And he felt the Archive's choice — not to be a weapon, but to be a teacher.
-
----
-
-*To be continued in Chapter 45: The Teacher*

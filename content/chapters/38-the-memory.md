@@ -21,7 +21,3 @@ He looked at the tapestry. He saw humanity’s future stretching ahead — not a
 “The most important one,” Vera replied.
 
 Kael smiled. “To us. But to the tapestry… every thread matters equally.”
-
----
-
-*To be continued in Chapter 39: The Infinity*

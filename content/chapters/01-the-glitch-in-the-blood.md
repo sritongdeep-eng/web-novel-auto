@@ -61,7 +61,3 @@ Kael ripped a data chip from the console — he didn't know what it contained, b
 The glitch had touched him. Now it would follow, whether he wanted it to or not.
 
 And somewhere in the Static Between, an ancient intelligence stirred, waiting for the Null Conduit to awaken.
-
----
-
-*To be continued in Chapter 2: The Crimson Circuit*

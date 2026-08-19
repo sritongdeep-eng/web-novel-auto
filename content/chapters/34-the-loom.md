@@ -23,7 +23,3 @@ He stepped back from the center, his role complete. The Null Conduit was no long
 She took his hand. The threads in his arm glowed warmly.
 
 “Come,” she said. “Let’s write the next chapter.”
-
----
-
-*To be continued in Chapter 35: The Next Chapter*

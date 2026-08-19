@@ -27,7 +27,3 @@ Where once it had been a secret society of seven, now it was a global council of
 "For what?" Kael asked.
 
 Lena smiled. "For the next chapter."
-
----
-
-*To be continued in Chapter 43: The Next Chapter*

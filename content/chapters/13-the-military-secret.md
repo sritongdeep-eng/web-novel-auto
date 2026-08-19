@@ -43,7 +43,3 @@ But Kael was.
 He was the Null Conduit. The bridge. The guardian.
 
 And he had a new mission.
-
----
-
-*To be continued in Chapter 14: The NORAD Core*

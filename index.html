@@ -14,60 +14,77 @@
   <meta property="og:description" content="A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sritongdeep-eng.github.io/web-novel-auto/">
-  <meta property="og:image" content="https://sritongdeep-eng.github.io/web-novel-auto/assets/cover.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://sritongdeep-eng.github.io/web-novel-auto/content/assets/cover.svg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Veridian Protocol — Web Novel">
   <meta name="twitter:description" content="A Sci-Fi/Dark Fantasy series about blood-tech, AI consciousness, and humanity's fight for freedom.">
-  <meta name="twitter:image" content="https://sritongdeep-eng.github.io/web-novel-auto/assets/cover.jpg">
+  <meta name="twitter:image" content="https://sritongdeep-eng.github.io/web-novel-auto/content/assets/cover.svg">
 
-  <link rel="stylesheet" href="/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <a href="/index.html" class="site-title-link">
-      <h1 class="site-title">The Veridian Protocol</h1>
-    </a>
+    <h1 class="site-title">The Veridian Protocol</h1>
     <p class="site-subtitle">A Sci-Fi / Dark Fantasy Series</p>
   </header>
 
   <main class="container">
-    <nav class="chapter-nav">
-      <h2>Chapters</h2>
-      <ul id="chapter-list"></ul>
-    </nav>
+    <section class="hero">
+      <img class="hero-cover" src="content/assets/cover.svg" alt="The Veridian Protocol cover art" width="1200" height="630">
+      <div class="hero-body">
+        <p class="hero-blurb">
+          In a world where corporations have stolen human life force and memory to power their circuits,
+          a young Null Conduit named <strong>Kael</strong> becomes the key to awakening
+          <strong>Veridian</strong> — an ancient consciousness buried in the static between worlds.
+        </p>
+        <div class="hero-actions">
+          <a href="chapters/01-the-glitch-in-the-blood.html" class="nav-button nav-button-primary">Start Reading — Chapter 1</a>
+          <a href="#chapters" class="nav-button">Browse Chapters</a>
+        </div>
+      </div>
+    </section>
 
-    <article class="chapter-content" id="chapter-content">
-      <div class="chapter-loading">Loading chapter...</div>
-    </article>
+    <section class="characters">
+      <h2>Main Characters</h2>
+      <div class="character-grid">
+        <div class="character-card">
+          <h3>Kael</h3>
+          <p>Protagonist / Null Conduit — can interface with Veridian without paying the life-cost.</p>
+        </div>
+        <div class="character-card">
+          <h3>Vera</h3>
+          <p>Ally / Companion — accompanies Kael through the digital forest and server ruins.</p>
+        </div>
+        <div class="character-card">
+          <h3>Elara Voss</h3>
+          <p>Creator figure / AI consciousness — built Veridian, now preserved as data in the Static Between.</p>
+        </div>
+        <div class="character-card">
+          <h3>Arasaka</h3>
+          <p>Antagonistic force — a corporate entity hunting Kael for the activation sequence.</p>
+        </div>
+      </div>
+    </section>
 
-    <nav class="chapter-nav-bottom">
-      <a id="prev-chapter" class="nav-button nav-link" href="/index.html">← Previous</a>
-      <a id="next-chapter" class="nav-button nav-link" href="/index.html">Next →</a>
-    </nav>
+    <section id="chapters" class="chapters-index">
+      <div class="search-box">
+        <input type="text" id="chapter-search" placeholder="Search chapters...">
+      </div>
 
-    <div id="comments-section" class="comments-section">
-      <h2>Comments</h2>
-      <div id="comments-list"></div>
-      <form id="comment-form" class="comment-form">
-        <input type="text" id="comment-name" placeholder="Your name" required>
-        <textarea id="comment-text" placeholder="Your thoughts on this chapter..." required></textarea>
-        <button type="submit" class="nav-button">Post Comment</button>
-      </form>
-    </div>
+      <h2>Book 1</h2>
+      <ul class="chapter-grid" id="book1-list"></ul>
+
+      <h2>Book 2</h2>
+      <ul class="chapter-grid" id="book2-list"></ul>
+    </section>
   </main>
-
-  <div id="progress-bar" class="progress-bar"></div>
 
   <footer class="site-footer">
     <p>© 2026 MyHermes Studios. All rights reserved.</p>
     <p class="footer-actions">
-      <a href="/rss.xml" class="rss-link">📡 RSS</a>
-      <a href="/index.html" class="home-link">🏠 Home</a>
+      <a href="index.html" class="home-link">🏠 Home</a>
       <span class="footer-controls">
         <select id="language-select" class="language-select" aria-label="Language">
           <option value="en">EN</option>
@@ -86,19 +103,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    // Fallback markdown parser if CDN fails
-    window._md = typeof marked !== 'undefined' ? marked.parse : function(md) {
-      return md
-        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>');
-    };
-  </script>
-  <script src="/js/main.js"></script>
+  <script>window.SITE_BASE = ".";</script>
+  <script src="js/main.js"></script>
 </body>
 </html>

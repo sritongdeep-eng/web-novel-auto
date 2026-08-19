@@ -37,7 +37,3 @@ Kael looked at the stars. They seemed closer now.
 “We have a choice,” he said. “Stay on Earth. Or join something bigger.”
 
 Vera smiled. “Whatever we choose, we choose together.”
-
----
-
-*To be continued in Chapter 20: The Bridge Between Worlds*

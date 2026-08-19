@@ -23,7 +23,3 @@ Kael thought of the undercity. Of the rain. Of the first time he’d seen the gl
 “We accept,” he said.
 
 The Seed flared. The Network expanded. And for the first time, humanity wasn’t alone in the universe.
-
----
-
-*To be continued in Chapter 25: The Star-Seed*

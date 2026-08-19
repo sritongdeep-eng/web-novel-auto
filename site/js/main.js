@@ -47,7 +47,8 @@ async function loadChapter(index) {
     const markdown = await response.text();
 
     const contentDiv = document.getElementById('chapter-content');
-    contentDiv.innerHTML = marked.parse(markdown);
+    const parser = window._md || ((md) => md);
+    contentDiv.innerHTML = parser(markdown);
     contentDiv.style.fontSize = fontSizes[currentFontSize];
 
     document.getElementById('prev-chapter').disabled = index === 0;

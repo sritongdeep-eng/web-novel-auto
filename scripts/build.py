@@ -4,6 +4,7 @@ Web Novel Auto Publisher — Zero-Cost Static Site Generator
 Builds a mobile-friendly, dark-mode static site from Markdown chapters.
 """
 
+import hashlib
 import json
 import os
 import re
@@ -131,12 +132,24 @@ def build_site():
     main_js = re.sub(r'const chapters = \[.*?\];', chapter_list_js, main_js, count=1, flags=re.DOTALL)
     (OUTPUT_DIR / "js" / "main.js").write_text(main_js, encoding="utf-8")
 
+    # Cache-busting: browsers (and GitHub's CDN) can serve a stale cached
+    # copy of css/style.css or js/main.js under the old filename forever.
+    # Stamp a content hash on every reference so a real content change always
+    # forces a fresh fetch, while unrelated deploys keep the same URL.
+    css_hash = hashlib.md5((SITE_DIR / "css" / "style.css").read_bytes()).hexdigest()[:8]
+    js_hash = hashlib.md5(main_js.encode("utf-8")).hexdigest()[:8]
+
+    def apply_cache_bust(html: str) -> str:
+        html = html.replace('css/style.css"', f'css/style.css?v={css_hash}"')
+        html = html.replace('js/main.js"', f'js/main.js?v={js_hash}"')
+        return html
+
     # Write homepage (a real landing page — distinct from the chapter-reading template)
     homepage_template = (SITE_DIR / "templates" / "index.html").read_text(encoding="utf-8")
-    (OUTPUT_DIR / "index.html").write_text(homepage_template, encoding="utf-8")
+    (OUTPUT_DIR / "index.html").write_text(apply_cache_bust(homepage_template), encoding="utf-8")
 
     # Generate individual chapter pages
-    chapter_template = (SITE_DIR / "templates" / "chapter.html").read_text(encoding="utf-8")
+    chapter_template = apply_cache_bust((SITE_DIR / "templates" / "chapter.html").read_text(encoding="utf-8"))
     chapters_dir = OUTPUT_DIR / "chapters"
     chapters_dir.mkdir(exist_ok=True)
 

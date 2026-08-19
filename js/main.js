@@ -279,6 +279,21 @@ function setupBookmark(chapterId) {
   container.appendChild(btn);
 }
 
+const dateLocales = { en: 'en-US', th: 'th-TH', zh: 'zh-CN', id: 'id-ID', vi: 'vi-VN' };
+
+function formatCommentDate(timestamp) {
+  if (!timestamp) return '';
+  const locale = dateLocales[currentLanguage] || 'en-US';
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    }).format(new Date(timestamp));
+  } catch {
+    return new Date(timestamp).toLocaleString();
+  }
+}
+
 function loadComments(chapterId) {
   const commentsList = document.getElementById('comments-list');
   if (!commentsList) return;
@@ -293,7 +308,10 @@ function loadComments(chapterId) {
 
   commentsList.innerHTML = comments.map(c => `
     <div class="comment">
-      <div class="comment-author">${escapeHtml(c.name)}</div>
+      <div class="comment-header">
+        <span class="comment-author">${escapeHtml(c.name)}</span>
+        <span class="comment-date">${formatCommentDate(c.timestamp)}</span>
+      </div>
       <div class="comment-text">${escapeHtml(c.text)}</div>
     </div>
   `).join('');

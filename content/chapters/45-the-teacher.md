@@ -20,4 +20,4 @@ Kael thought of the Void-Walker Prime. Of the choice he'd made to transform shad
 
 ---
 
-*To be continued in Chapter 46: The New Generation*
+

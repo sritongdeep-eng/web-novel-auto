@@ -164,6 +164,13 @@ def build_site():
             f'<a id="next-chapter" class="nav-button nav-link" href="{next_href}">Next →</a>'
         )
 
+        # Disable Next button on the final chapter
+        if not next_ch:
+            chapter_html = chapter_html.replace(
+                '<a id="next-chapter" class="nav-button nav-link" href="/index.html">Next →</a>',
+                '<button id="next-chapter" class="nav-button nav-button-disabled" disabled>Next →</button>'
+            )
+
         # Ensure footer language selector exists
         if 'id="language-select"' not in chapter_html:
             chapter_html = chapter_html.replace(

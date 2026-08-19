@@ -8,7 +8,7 @@
   --text-primary: #2D3748;
   --text-secondary: #5a6b7a;
   --border: #e6dfd2;
-  --accent: #d88758;
+  --accent: #9c4221;
   --accent-soft: #f3cfb8;
 }
 
@@ -239,7 +239,7 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #f3cfb8, #d88758);
+  background: linear-gradient(90deg, #f3cfb8, #9c4221);
   width: 0%;
   transition: width 0.15s ease-out;
   border-radius: 0 4px 4px 0;
@@ -439,7 +439,7 @@ body.light-theme {
   --text-primary: #2D3748;
   --text-secondary: #5a6b7a;
   --border: #e6dfd2;
-  --accent: #d88758;
+  --accent: #9c4221;
   --accent-soft: #f3cfb8;
 }
 

@@ -24,27 +24,15 @@ def read_markdown(filepath: Path) -> str:
 def markdown_to_html(md_text: str) -> str:
     """Minimal Markdown → HTML converter (no dependencies)."""
     html = md_text
-
-    # Headers
     html = re.sub(r'^### (.*$)', r'<h3>\1</h3>', html, flags=re.MULTILINE)
     html = re.sub(r'^## (.*$)', r'<h2>\1</h2>', html, flags=re.MULTILINE)
     html = re.sub(r'^# (.*$)', r'<h1>\1</h1>', html, flags=re.MULTILINE)
-
-    # Bold & Italic
     html = re.sub(r'\*\*\*(.*?)\*\*\*', r'<strong><em>\1</em></strong>', html)
     html = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', html)
     html = re.sub(r'\*(.*?)\*', r'<em>\1</em>', html)
-
-    # Horizontal rule
     html = re.sub(r'^---$', r'<hr>', html, flags=re.MULTILINE)
-
-    # Blockquote
     html = re.sub(r'^&gt; (.*$)', r'<blockquote>\1</blockquote>', html, flags=re.MULTILINE)
-
-    # Links
     html = re.sub(r'\[([^\]]+)\]\(([^\)]+)\)', r'<a href="\2">\1</a>', html)
-
-    # Paragraphs
     paragraphs = []
     in_paragraph = False
     for line in html.split('\n'):
@@ -62,11 +50,9 @@ def markdown_to_html(md_text: str) -> str:
             paragraphs.append(stripped)
     if in_paragraph:
         paragraphs.append('</p>')
-
     return '\n'.join(paragraphs)
 
 def get_excerpt(content: str, length: int = 200) -> str:
-    """First non-heading paragraph, plain text, for meta descriptions / RSS."""
     for line in content.split('\n'):
         stripped = line.strip()
         if stripped and not stripped.startswith('#') and not stripped.startswith('---'):
@@ -75,15 +61,18 @@ def get_excerpt(content: str, length: int = 200) -> str:
     return ""
 
 def escape_attr(text: str) -> str:
-    return (text.replace("&", "&amp;").replace("<", "&lt;")
-                .replace(">", "&gt;").replace('"', "&quot;"))
+    return (text.replace("&", "&").replace("<", "<")
+                .replace(">", ">").replace('"', ""))
+
+def escape_xml(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
 
 def get_chapters() -> list:
     chapters = []
     chapter_dir = CONTENT_DIR / "chapters"
     if not chapter_dir.exists():
         return chapters
-
     for filepath in sorted(chapter_dir.glob("*.md")):
         content = read_markdown(filepath)
         title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
@@ -98,6 +87,13 @@ def get_chapters() -> list:
 
 def build_site():
     print("🔨 Building Web Novel Site...")
+
+    # Escape harness self-test
+    import sys
+    sys.path.insert(0, "D:/MyHermes/tools")
+    from escape_harness import assert_escape_works
+    assert_escape_works(escape_xml)
+    print("✅ escape harness passed")
 
     # Clean output
     if OUTPUT_DIR.exists():
@@ -120,7 +116,7 @@ def build_site():
         print("⚠️  No chapters found!")
         return
 
-    # Generate chapter list for JS (shared by homepage grid + chapter-page sidebar)
+    # Generate chapter list for JS
     chapter_list_js = "const chapters = [\n"
     for ch in chapters:
         title_js = ch["title"].replace('"', '\\"')
@@ -132,10 +128,7 @@ def build_site():
     main_js = re.sub(r'const chapters = \[.*?\];', chapter_list_js, main_js, count=1, flags=re.DOTALL)
     (OUTPUT_DIR / "js" / "main.js").write_text(main_js, encoding="utf-8")
 
-    # Cache-busting: browsers (and GitHub's CDN) can serve a stale cached
-    # copy of css/style.css or js/main.js under the old filename forever.
-    # Stamp a content hash on every reference so a real content change always
-    # forces a fresh fetch, while unrelated deploys keep the same URL.
+    # Cache-busting
     css_hash = hashlib.md5((SITE_DIR / "css" / "style.css").read_bytes()).hexdigest()[:8]
     js_hash = hashlib.md5(main_js.encode("utf-8")).hexdigest()[:8]
 
@@ -144,7 +137,7 @@ def build_site():
         html = html.replace('js/main.js"', f'js/main.js?v={js_hash}"')
         return html
 
-    # Write homepage (a real landing page — distinct from the chapter-reading template)
+    # Write homepage
     homepage_template = (SITE_DIR / "templates" / "index.html").read_text(encoding="utf-8")
     (OUTPUT_DIR / "index.html").write_text(apply_cache_bust(homepage_template), encoding="utf-8")
 
@@ -156,14 +149,11 @@ def build_site():
     for idx, ch in enumerate(chapters):
         html_filename = ch['file'].replace('.md', '.html')
         excerpt = get_excerpt(ch["content"])
-
         body_html = markdown_to_html(ch["content"])
 
         prev_ch = chapters[idx - 1] if idx > 0 else None
         next_ch = chapters[idx + 1] if idx < len(chapters) - 1 else None
 
-        # "To be continued" is generated from real chapter data, never hand-written
-        # in the source Markdown, so it can never drift out of sync or go missing.
         if next_ch:
             next_file = next_ch['file'].replace('.md', '.html')
             body_html += (
@@ -197,14 +187,14 @@ def build_site():
 
         (chapters_dir / html_filename).write_text(chapter_html, encoding="utf-8")
 
-    # Copy built chapter pages to repo root `chapters/` so GitHub Pages serves fresh generated pages
+    # Copy built chapter pages to repo root
     repo_chapters_dir = BASE_DIR / "chapters"
     repo_chapters_dir.mkdir(exist_ok=True)
     for built in sorted(chapters_dir.glob("*.html")):
         dst = repo_chapters_dir / built.name
         dst.write_bytes(built.read_bytes())
 
-    # Sync entire build output back to repo root so GitHub Pages serves updated files
+    # Sync entire build output back to repo root
     for item in sorted(OUTPUT_DIR.iterdir()):
         dst = BASE_DIR / item.name
         if item.is_dir():
@@ -274,9 +264,6 @@ def build_site():
     search_path = OUTPUT_DIR / "search.json"
     search_path.write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"🔍 Search index generated: {search_path}")
-
-def escape_xml(text: str) -> str:
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 if __name__ == "__main__":
     build_site()

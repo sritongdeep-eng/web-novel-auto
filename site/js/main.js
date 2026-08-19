@@ -134,11 +134,10 @@ function renderChapterList(activeId) {
   });
 }
 
-// Homepage: full Book 1 / Book 2 chapter grids.
+// Homepage: full chapter grid.
 function renderHomeChapterGrids() {
   const book1 = document.getElementById('book1-list');
-  const book2 = document.getElementById('book2-list');
-  if (!book1 && !book2) return;
+  if (!book1) return;
 
   chapters.forEach((ch) => {
     const li = document.createElement('li');
@@ -146,7 +145,7 @@ function renderHomeChapterGrids() {
     link.href = chapterHref(ch);
     link.textContent = ch.title;
     li.appendChild(link);
-    (ch.id <= 40 ? book1 : book2)?.appendChild(li);
+    book1.appendChild(li);
   });
 }
 

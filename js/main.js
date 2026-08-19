@@ -11,41 +11,6 @@ const chapters = [
   { id: 8, title: "CHAPTER 8 — The Veridian Core", file: "08-the-veridian-core.md" },
   { id: 9, title: "CHAPTER 9 — Sacrifice Protocol", file: "09-sacrifice-protocol.md" },
   { id: 10, title: "CHAPTER 10 — New Genesis", file: "10-new-genesis.md" },
-  { id: 11, title: "CHAPTER 11 — The Guardian’s First Watch", file: "11-the-guardians-first-watch.md" },
-  { id: 12, title: "CHAPTER 12 — The Shadow in the Static", file: "12-the-shadow-in-the-static.md" },
-  { id: 13, title: "CHAPTER 13 — The Military Secret", file: "13-the-military-secret.md" },
-  { id: 14, title: "CHAPTER 14 — The NORAD Core", file: "14-the-norad-core.md" },
-  { id: 15, title: "CHAPTER 15 — The Choice", file: "15-the-choice.md" },
-  { id: 16, title: "CHAPTER 16 — The Void Walker", file: "16-the-void-walker.md" },
-  { id: 17, title: "CHAPTER 17 — The First Server", file: "17-the-first-server.md" },
-  { id: 18, title: "CHAPTER 18 — The Merge", file: "18-the-merge.md" },
-  { id: 19, title: "CHAPTER 19 — The First Contact", file: "19-the-first-contact.md" },
-  { id: 20, title: "CHAPTER 20 — The Bridge Between Worlds", file: "20-the-bridge-between-worlds.md" },
-  { id: 21, title: "CHAPTER 21 — The Signal", file: "21-the-signal.md" },
-  { id: 22, title: "CHAPTER 22 — The CERN Core", file: "22-the-cern-core.md" },
-  { id: 23, title: "CHAPTER 23 — The Guardian Protocol", file: "23-the-guardian-protocol.md" },
-  { id: 24, title: "CHAPTER 24 — The Weavers’ Gift", file: "24-the-weavers-gift.md" },
-  { id: 25, title: "CHAPTER 25 — The Star-Seed", file: "25-the-star-seed.md" },
-  { id: 26, title: "CHAPTER 26 — The First Launch", file: "26-the-first-launch.md" },
-  { id: 27, title: "CHAPTER 27 — The Colony", file: "27-the-colony.md" },
-  { id: 28, title: "CHAPTER 28 — The Galactic Web", file: "28-the-galactic-web.md" },
-  { id: 29, title: "CHAPTER 29 — The Tapestry", file: "29-the-tapestry.md" },
-  { id: 30, title: "CHAPTER 30 — The Unwritten Story", file: "30-the-unwritten-story.md" },
-  { id: 31, title: "CHAPTER 31 — The Edge of the Tapestry", file: "31-the-edge-of-the-tapestry.md" },
-  { id: 32, title: "CHAPTER 32 — Into the Void", file: "32-into-the-void.md" },
-  { id: 33, title: "CHAPTER 33 — The Final Weave", file: "33-the-final-weave.md" },
-  { id: 34, title: "CHAPTER 34 — The Loom", file: "34-the-loom.md" },
-  { id: 35, title: "CHAPTER 35 — The Next Chapter", file: "35-the-next-chapter.md" },
-  { id: 36, title: "CHAPTER 36 — The Author’s Pen", file: "36-the-authors-pen.md" },
-  { id: 37, title: "CHAPTER 37 — The Reader", file: "37-the-reader.md" },
-  { id: 38, title: "CHAPTER 38 — The Memory", file: "38-the-memory.md" },
-  { id: 39, title: "CHAPTER 39 — The Infinity", file: "39-the-infinity.md" },
-  { id: 40, title: "CHAPTER 40 — The Last Page", file: "40-the-last-page.md" },
-  { id: 41, title: "BOOK 2: THE CRIMSON CIRCUIT — Chapter 41", file: "41-book2-chapter1.md" },
-  { id: 42, title: "CHAPTER 42 — The Reunion", file: "42-the-reunion.md" },
-  { id: 43, title: "CHAPTER 43 — The Archive Awakens", file: "43-the-archive-awakens.md" },
-  { id: 44, title: "CHAPTER 44 — The Choice", file: "44-the-choice.md" },
-  { id: 45, title: "CHAPTER 45 — The Teacher", file: "45-the-teacher.md" },
 ];
 
 
@@ -179,11 +144,10 @@ function renderChapterList(activeId) {
   });
 }
 
-// Homepage: full Book 1 / Book 2 chapter grids.
+// Homepage: full chapter grid.
 function renderHomeChapterGrids() {
   const book1 = document.getElementById('book1-list');
-  const book2 = document.getElementById('book2-list');
-  if (!book1 && !book2) return;
+  if (!book1) return;
 
   chapters.forEach((ch) => {
     const li = document.createElement('li');
@@ -191,7 +155,7 @@ function renderHomeChapterGrids() {
     link.href = chapterHref(ch);
     link.textContent = ch.title;
     li.appendChild(link);
-    (ch.id <= 40 ? book1 : book2)?.appendChild(li);
+    book1.appendChild(li);
   });
 }
 

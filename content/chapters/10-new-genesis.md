@@ -46,4 +46,4 @@ The Veridian Protocol was complete.
 
 **END OF THE VERIDIAN PROTOCOL**
 
-*Thank you for reading. Book 2, “The Crimson Circuit,” coming soon.*
+*Thank you for reading.*

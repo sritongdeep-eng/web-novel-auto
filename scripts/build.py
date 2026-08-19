@@ -129,12 +129,69 @@ def build_site():
     # Generate individual chapter pages (optional, for SEO)
     chapters_dir = OUTPUT_DIR / "chapters"
     chapters_dir.mkdir(exist_ok=True)
-    for ch in chapters:
+    for idx, ch in enumerate(chapters):
         chapter_html = template.replace(
             '<article class="chapter-content" id="chapter-content">',
             f'<article class="chapter-content" id="chapter-content">\n{markdown_to_html(ch["content"])}'
         )
+
+        # Remove static loading placeholder if present
+        chapter_html = chapter_html.replace(
+            '<div class="chapter-loading">Loading chapter...</div>\n',
+            ''
+        )
+
+        # Ensure chapter stats container exists
+        if '<div class="chapter-stats">' not in chapter_html:
+            chapter_html = chapter_html.replace(
+                '  </article>',
+                '      <div class="chapter-stats">\n      <span id="reading-time"></span>\n      <span id="word-count"></span>\n    </div>\n  </article>'
+            )
+
+        # Set prev/next links based on chapter order
+        prev_ch = chapters[idx - 1] if idx > 0 else None
+        next_ch = chapters[idx + 1] if idx < len(chapters) - 1 else None
+
+        prev_href = f'/chapters/{prev_ch["file"].replace(".md", ".html")}' if prev_ch else '/index.html'
+        next_href = f'/chapters/{next_ch["file"].replace(".md", ".html")}' if next_ch else '/index.html'
+
+        chapter_html = chapter_html.replace(
+            '<a id="prev-chapter" class="nav-button nav-link" href="/index.html">← Previous</a>',
+            f'<a id="prev-chapter" class="nav-button nav-link" href="{prev_href}">← Previous</a>'
+        )
+        chapter_html = chapter_html.replace(
+            '<a id="next-chapter" class="nav-button nav-link" href="/index.html">Next →</a>',
+            f'<a id="next-chapter" class="nav-button nav-link" href="{next_href}">Next →</a>'
+        )
+
+        # Ensure footer language selector exists
+        if 'id="language-select"' not in chapter_html:
+            chapter_html = chapter_html.replace(
+                '<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>',
+                '<select id="language-select" class="language-select" aria-label="Language">\n          <option value="en">EN</option>\n          <option value="th">TH</option>\n          <option value="zh">ZH</option>\n          <option value="id">ID</option>\n          <option value="vi">VI</option>\n        </select>\n        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>'
+            )
+
+        # Ensure "To be continued" uses the correct next chapter when possible
+        if next_ch:
+            next_title = next_ch['title']
+            next_file = next_ch['file'].replace('.md', '.html')
+            chapter_html = chapter_html.replace(
+                'To be continued in <a href="/chapters/02-the-crimson-circuit.html">Chapter 2: The Crimson Circuit</a>',
+                f'To be continued in <a href="/chapters/{next_file}">{next_title}</a>'
+            )
+            chapter_html = chapter_html.replace(
+                'To be continued in Chapter 46: The New Generation',
+                f'To be continued in {next_title}'
+            )
+
         (chapters_dir / f"{ch['file'].replace('.md', '.html')}").write_text(chapter_html, encoding="utf-8")
+
+    # Copy built chapter pages to repo root `chapters/` so GitHub Pages serves fresh generated pages
+    repo_chapters_dir = BASE_DIR / "chapters"
+    repo_chapters_dir.mkdir(exist_ok=True)
+    for built in sorted(chapters_dir.glob("*.html")):
+        dst = repo_chapters_dir / built.name
+        dst.write_bytes(built.read_bytes())
 
     print(f"✅ Built {len(chapters)} chapter(s)")
     print(f"📁 Output: {OUTPUT_DIR}")
